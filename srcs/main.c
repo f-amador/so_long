@@ -19,7 +19,7 @@ int	ft_validfd(char *str, t_data *img)
 		free(line);
 		line = ft_get_next_line(fd);
 	}
-	img->length = len - 1;
+	img->rows = len - 1;
 	close(fd);
 	return (len);
 }
@@ -34,7 +34,7 @@ void	ft_fillmap(t_data *img, int fd)
 	while (i < img->lines)
 	{
 		line = ft_get_next_line(fd);
-		img->map[i] = (int *)malloc(img->length * sizeof(int));
+		img->map[i] = (int *)malloc(img->rows * sizeof(int));
 		if (!(img->map[i]))
 			return ;
 		j = 0;
@@ -76,7 +76,7 @@ int ft_mapcheck(t_data *img)
 	while (i < img->lines)
 	{
 		j = 0;
-		while (j < img->length)
+		while (j < img->rows)
 		{
 			c = img->map[i][j++];
 			if (c == 'C')
@@ -99,13 +99,13 @@ int	main(int ac, char *av[])
 	int i;
 	int j;
 	
-	if (ac == 2 && ft_validfd(av[1], &img) && ft_allocmap(av[1], &img) && ft_mapcheck(&img) && floodFill(&img, img.start[0], img.start[1]))
+	if (ac == 2 && ft_validfd(av[1], &img) && ft_allocmap(av[1], &img) && ft_mapcheck(&img) && ft_countcollect(&img))
 	{
 		i = 0;
 		while (i < img.lines)
 		{
 			j = 0;
-			while (j < img.length)
+			while (j < img.rows)
 			{
 				j++;
 			}

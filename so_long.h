@@ -32,19 +32,20 @@ typedef struct s_data {
 	int		endian;
 	int		lines;
 	int		**map;
-	int		length;
+	int		rows;
 	int		start[2];
 	int		player;
 	int		exit;
+	int		exitc;
 	int		collect;
 }	t_data;
 
 // --------PROTOTYPES--------
 char	*ft_get_next_line(int fd);
 size_t	ft_strlen(char const *s);
-void	my_mlx_pixel_put(t_data *img, int x, int y, int color);
 void	ft_win_destroy(t_data *img);
-int 	ft_floodFill(t_data *img, int x, int y);
+int 	ft_floodfill(t_data *img, int x, int y, int *collect);
+int	ft_countcollect(t_data *img);
 
 
 
