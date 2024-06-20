@@ -1,5 +1,10 @@
 #include "../include/so_long.h"
 
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
 int	ft_countcollect(t_data *img)
 {
 	int	collect;
@@ -40,10 +45,7 @@ int ft_floodfill(t_data *img, int x, int y, int *collect)
 	if (tmp == 'E')
 		img->exitc = 1;
 	if (tmp == 'C')
-	{
 		(*collect)++;
-		//img->map[x][y] = 'V';
-	}
 	if (tmp != 'E')
 		img->map[x][y] = 'V';
 	result = ft_floodfill(img, x + 1, y, collect)
