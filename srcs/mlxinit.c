@@ -10,7 +10,8 @@ void	ft_loadimg(t_data *img)
     img->faddress = mlx_xpm_file_to_image(img->mlx, "./sprites/floor.xpm", &(img->bimg), &(img->bimg));
     img->paddress = mlx_xpm_file_to_image(img->mlx, "./sprites/player.xpm", &(img->bimg), &(img->bimg));
     img->waddress = mlx_xpm_file_to_image(img->mlx, "./sprites/wall.xpm", &(img->bimg), &(img->bimg));
-
+	if (!img->caddress || !img->eaddress || !img->faddress || !img->paddress || !img->waddress)
+		ft_win_destroy(img);
 }
 void	ft_drawimg(t_data *img)
 {
@@ -42,11 +43,16 @@ void	ft_drawimg(t_data *img)
 
 int	ft_win_destroy(t_data *img)
 {
-	mlx_destroy_image(img->mlx, img->caddress);
-    mlx_destroy_image(img->mlx, img->waddress);
-    mlx_destroy_image(img->mlx, img->faddress);
-    mlx_destroy_image(img->mlx, img->eaddress);
-    mlx_destroy_image(img->mlx, img->paddress);
+	if (img->caddress)
+		mlx_destroy_image(img->mlx, img->caddress);
+	if  (img->waddress)
+    	mlx_destroy_image(img->mlx, img->waddress);
+	if (img->faddress)
+    	mlx_destroy_image(img->mlx, img->faddress);
+	if (img->eaddress)
+    	mlx_destroy_image(img->mlx, img->eaddress);
+	if (img->paddress)
+    	mlx_destroy_image(img->mlx, img->paddress);
 	mlx_destroy_window(img->mlx, img->mlx_win);
 	mlx_destroy_display(img->mlx);
 	mlx_loop_end(img->mlx);
@@ -57,7 +63,6 @@ int	ft_win_destroy(t_data *img)
 
 void	ft_putnbr(int n)
 {
-	
 	if (n > 9)
 	{
 		ft_putnbr(n / 10);
