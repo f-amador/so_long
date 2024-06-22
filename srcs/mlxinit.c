@@ -5,12 +5,12 @@
 void	ft_loadimg(t_data *img)
 {
     img->bimg = 50;
-    img->caddress = mlx_xpm_file_to_image(img->mlx, "./sprites/collective.xpm", &(img->bimg), &(img->bimg));
-    img->eaddress = mlx_xpm_file_to_image(img->mlx, "./sprites/exit.xpm", &(img->bimg), &(img->bimg));
-    img->faddress = mlx_xpm_file_to_image(img->mlx, "./sprites/floor.xpm", &(img->bimg), &(img->bimg));
-    img->paddress = mlx_xpm_file_to_image(img->mlx, "./sprites/player.xpm", &(img->bimg), &(img->bimg));
-    img->waddress = mlx_xpm_file_to_image(img->mlx, "./sprites/wall.xpm", &(img->bimg), &(img->bimg));
-	if (!img->caddress || !img->eaddress || !img->faddress || !img->paddress || !img->waddress)
+    img->caddr = mlx_xpm_file_to_image(img->mlx, "./sprites/collective.xpm", &(img->bimg), &(img->bimg));
+    img->eaddr = mlx_xpm_file_to_image(img->mlx, "./sprites/exit.xpm", &(img->bimg), &(img->bimg));
+    img->faddr = mlx_xpm_file_to_image(img->mlx, "./sprites/floor.xpm", &(img->bimg), &(img->bimg));
+    img->paddr = mlx_xpm_file_to_image(img->mlx, "./sprites/player.xpm", &(img->bimg), &(img->bimg));
+    img->waddr = mlx_xpm_file_to_image(img->mlx, "./sprites/wall.xpm", &(img->bimg), &(img->bimg));
+	if (!img->caddr || !img->eaddr || !img->faddr || !img->paddr || !img->waddr)
 		ft_win_destroy(img);
 }
 void	ft_drawimg(t_data *img)
@@ -25,15 +25,15 @@ void	ft_drawimg(t_data *img)
 		while (j < img->rows)
 		{
 			if (img->map[i][j] == '1')
-				mlx_put_image_to_window(img->mlx, img->mlx_win, img->waddress, j * 50, i * 50);
+				mlx_put_image_to_window(img->mlx, img->mlx_win, img->waddr, j * 50, i * 50);
 			else if (img->map[i][j] == '0')
-				mlx_put_image_to_window(img->mlx, img->mlx_win, img->faddress, j * 50, i * 50);
+				mlx_put_image_to_window(img->mlx, img->mlx_win, img->faddr, j * 50, i * 50);
 			else if (img->map[i][j] == 'P')
-				mlx_put_image_to_window(img->mlx, img->mlx_win, img->paddress, j * 50, i * 50);
+				mlx_put_image_to_window(img->mlx, img->mlx_win, img->paddr, j * 50, i * 50);
 			else if (img->map[i][j] == 'C')
-				mlx_put_image_to_window(img->mlx, img->mlx_win, img->caddress, j * 50, i * 50);
+				mlx_put_image_to_window(img->mlx, img->mlx_win, img->caddr, j * 50, i * 50);
 			else
-				mlx_put_image_to_window(img->mlx, img->mlx_win, img->eaddress, j * 50, i * 50);
+				mlx_put_image_to_window(img->mlx, img->mlx_win, img->eaddr, j * 50, i * 50);
 			j++;
 		}
 		i++;
@@ -43,16 +43,16 @@ void	ft_drawimg(t_data *img)
 
 int	ft_win_destroy(t_data *img)
 {
-	if (img->caddress)
-		mlx_destroy_image(img->mlx, img->caddress);
-	if  (img->waddress)
-    	mlx_destroy_image(img->mlx, img->waddress);
-	if (img->faddress)
-    	mlx_destroy_image(img->mlx, img->faddress);
-	if (img->eaddress)
-    	mlx_destroy_image(img->mlx, img->eaddress);
-	if (img->paddress)
-    	mlx_destroy_image(img->mlx, img->paddress);
+	if (img->caddr)
+		mlx_destroy_image(img->mlx, img->caddr);
+	if  (img->waddr)
+    	mlx_destroy_image(img->mlx, img->waddr);
+	if (img->faddr)
+    	mlx_destroy_image(img->mlx, img->faddr);
+	if (img->eaddr)
+    	mlx_destroy_image(img->mlx, img->eaddr);
+	if (img->paddr)
+    	mlx_destroy_image(img->mlx, img->paddr);
 	mlx_destroy_window(img->mlx, img->mlx_win);
 	mlx_destroy_display(img->mlx);
 	mlx_loop_end(img->mlx);

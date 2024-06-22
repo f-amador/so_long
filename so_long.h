@@ -35,11 +35,12 @@ typedef struct s_data {
 	void		*img;
 	void		*mlx;
 	void		*mlx_win;
-	void		*caddress;
-	void		*eaddress;
-	void		*paddress;
-	void		*waddress;
-	void		*faddress;
+	void		*caddr;
+	void		*eaddr;
+	void		*paddr;
+	void		*p2addr;
+	void		*waddr;
+	void		*faddr;
 	char		*addr;
 	int		steps;
 	int		bimg;
