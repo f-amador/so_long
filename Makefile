@@ -19,6 +19,7 @@ $(NAME): $(OBJ)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -o $@ -c -g $<
+	make -C ./include/minilibx-linux
 
 clean: all
 	rm -rf objs

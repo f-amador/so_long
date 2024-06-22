@@ -62,14 +62,14 @@ int	ft_allocmap(char *str, t_data *img)
 
 int	main(int ac, char *av[])
 {
-	static t_data img;
-	int	i;
-	
+	static t_data	img;
+	int				i;
 
 	if (ac == 2 && ft_validfd(av[1], &img) && ft_checker(&img, av[1]))
 	{
 		i = ft_strlen(av[1]) - 1;
-		if (*av[i] == 'r' && *av[i - 1] == 'e' && *av[i - 2] == 'b' && *av[i - 3] == '.')
+		if (i >= 3 && av[1][i] == 'r' && av[1][i - 1] == 'e'
+				&& av[1][i - 2] == 'b' && av[1][i - 3] == '.')
 			ft_mlxinit(&img);
 	}
 	else
