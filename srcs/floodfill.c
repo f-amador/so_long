@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   floodfill.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: framador <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/22 16:58:22 by framador          #+#    #+#             */
+/*   Updated: 2024/06/22 16:59:35 by framador         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 void	ft_putchar(char c)
@@ -8,9 +20,10 @@ void	ft_putchar(char c)
 int	ft_countcollect(t_data *img)
 {
 	int	collect;
-	int i = 0;
-	int j;
+	int	i;
+	int	j;
 
+	i = 0;
 	collect = 0;
 	ft_floodfill(img, img->start[0], img->start[1], &collect);
 	if ((collect == img->collect) && img->exitc)
@@ -27,14 +40,14 @@ int	ft_countcollect(t_data *img)
 			i++;
 		}
 		return (1);
-    }
+	}
 	return (0);
 }
 
-int ft_floodfill(t_data *img, int x, int y, int *collect) 
+int	ft_floodfill(t_data *img, int x, int y, int *collect)
 {
-	int result;
-	char tmp;
+	int		result;
+	char	tmp;
 
 	result = 0;
 	if (x < 0 || x >= img->lines || y < 0 || y >= img->rows)
@@ -55,4 +68,15 @@ int ft_floodfill(t_data *img, int x, int y, int *collect)
 	if (tmp != 'C')
 		img->map[x][y] = tmp;
 	return (result);
+}
+
+void	ft_putnbr(int n)
+{
+	if (n > 9)
+	{
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
+	}
+	else
+		ft_putchar(n + '0');
 }

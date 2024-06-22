@@ -1,30 +1,42 @@
-#include "../include/so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: framador <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/22 16:54:05 by framador          #+#    #+#             */
+/*   Updated: 2024/06/22 16:55:45 by framador         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../include/so_long.h"
 
 void	ft_freemap(t_data *img)
 {
-	int i;
-	int j;
-		i = 0;
-		while (i < img->lines)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < img->lines)
+	{
+		j = 0;
+		while (j < img->rows)
 		{
-			j = 0;
-			while (j < img->rows)
-			{
-				j++;
-			}
-			free(img->map[i]);
-			i++;
+			j++;
 		}
-		free(img->map);
+		free(img->map[i]);
+		i++;
+	}
+	free(img->map);
 }
 
 void	ft_fillmap(t_data *img, int fd)
 {
-	int	i;
+	int		i;
 	char	*line;
-	int	j;
-	
+	int		j;
+
 	i = 0;
 	while (i < img->lines)
 	{
@@ -33,7 +45,7 @@ void	ft_fillmap(t_data *img, int fd)
 		if (!(img->map[i]))
 			return ;
 		j = 0;
-		while(line[j] && line[j] != '\n')
+		while (line[j] && line[j] != '\n')
 		{
 			if (line[j] == 'P')
 			{
@@ -47,6 +59,7 @@ void	ft_fillmap(t_data *img, int fd)
 		free(line);
 	}
 }
+
 int	ft_allocmap(char *str, t_data *img)
 {
 	int	fd;

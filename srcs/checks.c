@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checks.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: framador <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/22 16:56:31 by framador          #+#    #+#             */
+/*   Updated: 2024/06/22 16:57:08 by framador         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 int	ft_validfd(char *str, t_data *img)
 {
-	int	fd;
+	int		fd;
 	char	*line;
 	size_t	len;
 
@@ -24,11 +36,10 @@ int	ft_validfd(char *str, t_data *img)
 	return (len);
 }
 
-
-int ft_mapcheck(t_data *img)
+int	ft_mapcheck(t_data *img)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	c;
 
 	i = 0;
@@ -51,6 +62,7 @@ int ft_mapcheck(t_data *img)
 	}
 	return ((img->player == 1 && img->exit == 1 && img->collect > 0));
 }
+
 int	ft_checktopwalls(t_data *img)
 {
 	int	x;

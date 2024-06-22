@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_hooks.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: framador <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/22 17:00:08 by framador          #+#    #+#             */
+/*   Updated: 2024/06/22 17:01:17 by framador         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
-static void ft_moveu(t_data *img)
+static void	ft_moveu(t_data *img)
 {
 	int	x;
 	int	y;
@@ -13,16 +25,17 @@ static void ft_moveu(t_data *img)
 			img->collectc++;
 		img->start[0]--;
 		if (img->map[x][y] != 'E')
-            img->map[x][y] = '0';
-        if (img->map[x - 1][y] != 'E')
-            img->map[x - 1][y] = 'P';
+			img->map[x][y] = '0';
+		if (img->map[x - 1][y] != 'E')
+			img->map[x - 1][y] = 'P';
 		if (img->map[x - 1][y] == 'E' && img->collect == img ->collectc)
 			ft_win_destroy(img);
 		img->steps++;
 		ft_drawimg(img); 
 	}
 }
-static void ft_moved(t_data *img)
+
+static void	ft_moved(t_data *img)
 {
 	int	x;
 	int	y;
@@ -35,40 +48,41 @@ static void ft_moved(t_data *img)
 			img->collectc++;
 		img->start[0]++;
 		if (img->map[x][y] != 'E')
-            img->map[x][y] = '0';
-        if (img->map[x + 1][y] != 'E')
-            img->map[x + 1][y] = 'P';
+			img->map[x][y] = '0';
+		if (img->map[x + 1][y] != 'E')
+			img->map[x + 1][y] = 'P';
 		if (img->map[x + 1][y] == 'E' && img->collect == img ->collectc)
 			ft_win_destroy(img);
 		img->steps++;
 		ft_drawimg(img); 
 	}
 }
-static void ft_movel(t_data *img)
-{
-    int x;
-    int y;
 
-    x = img->start[0];
-    y = img->start[1];
-    if (img->map[x][y - 1] != '1')
-    {
-        if (img->map[x][y - 1] == 'C')
-            img->collectc++;
-        img->start[1]--;
-        if (img->map[x][y] != 'E')
-            img->map[x][y] = '0';
-        if (img->map[x][y - 1] != 'E')
-            img->map[x][y - 1] = 'P';
+static void	ft_movel(t_data *img)
+{
+	int	x;
+	int	y;
+
+	x = img->start[0];
+	y = img->start[1];
+	if (img->map[x][y - 1] != '1')
+	{
+		if (img->map[x][y - 1] == 'C')
+			img->collectc++;
+		img->start[1]--;
+		if (img->map[x][y] != 'E')
+			img->map[x][y] = '0';
+		if (img->map[x][y - 1] != 'E')
+			img->map[x][y - 1] = 'P';
 		if (img->map[x][y - 1] == 'E' && img->collect == img ->collectc)
 			ft_win_destroy(img);
 		img->steps++;
 		img->left = 1;
-        ft_drawimg(img); 
-    }
+		ft_drawimg(img); 
+	}
 }
 
-static void ft_mover(t_data *img)
+static void	ft_mover(t_data *img)
 {
 	int	x;
 	int	y;
@@ -81,9 +95,9 @@ static void ft_mover(t_data *img)
 			img->collectc++;
 		img->start[1]++;
 		if (img->map[x][y] != 'E')
-            img->map[x][y] = '0';
-        if (img->map[x][y + 1] != 'E')
-            img->map[x][y + 1] = 'P';
+			img->map[x][y] = '0';
+		if (img->map[x][y + 1] != 'E')
+			img->map[x][y + 1] = 'P';
 		if (img->map[x][y + 1] == 'E' && img->collect == img ->collectc)
 			ft_win_destroy(img);
 		img->steps++;
@@ -91,6 +105,7 @@ static void ft_mover(t_data *img)
 		ft_drawimg(img); 
 	}
 }
+
 int	ft_keyhook(int keycode, t_data *img)
 {
 	write(1, "Moves:", 6);
