@@ -33,6 +33,7 @@ static void	ft_moveu(t_data *img)
 		img->steps++;
 		ft_drawimg(img); 
 	}
+	ft_printmoves(img);
 }
 
 static void	ft_moved(t_data *img)
@@ -56,6 +57,7 @@ static void	ft_moved(t_data *img)
 		img->steps++;
 		ft_drawimg(img); 
 	}
+	ft_printmoves(img);
 }
 
 static void	ft_movel(t_data *img)
@@ -80,6 +82,7 @@ static void	ft_movel(t_data *img)
 		img->left = 1;
 		ft_drawimg(img); 
 	}
+	ft_printmoves(img);
 }
 
 static void	ft_mover(t_data *img)
@@ -104,13 +107,12 @@ static void	ft_mover(t_data *img)
 		img->left = 0;
 		ft_drawimg(img); 
 	}
+	ft_printmoves(img); 
 }
 
 int	ft_keyhook(int keycode, t_data *img)
 {
-	write(1, "Moves:", 6);
-	ft_putnbr(img->steps);
-	write(1, "\n", 1);
+	
 	if (keycode == ESC)
 		ft_win_destroy(img);
 	else if (keycode == W_KEY || keycode == UP_KEY)

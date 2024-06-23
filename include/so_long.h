@@ -49,6 +49,8 @@ typedef struct s_data {
 	void		*p2addr;
 	void		*caddr;
 	void		*eaddr;
+	void		*e2addr;
+	void		*e3addr;
 	void		*paddr;
 	void		*waddr;
 	void		*faddr;
@@ -81,6 +83,7 @@ int		ft_checktopwalls(t_data *img);
 int		ft_checksidewalls(t_data *img);
 int		ft_checker(t_data *img, char *str);
 int		ft_allocmap(char *str, t_data *img);
+void	ft_printmoves(t_data *img);
 void	ft_mlxinit(t_data *img);
 void	ft_freemap(t_data *img);
 void	ft_drawimg(t_data *img);

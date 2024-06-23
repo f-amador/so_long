@@ -12,6 +12,13 @@
 
 #include "../include/so_long.h"
 
+void	ft_printmoves(t_data *img)
+{
+	write(1, "Moves:", 6);
+	ft_putnbr(img->steps);
+	write(1, "\n", 1);
+}
+
 void	ft_freemap(t_data *img)
 {
 	int	i;
