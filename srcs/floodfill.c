@@ -12,6 +12,18 @@
 
 #include "../include/so_long.h"
 
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s && s[i] && s[i] != 10)
+		i++;
+	return (i);
+}
+
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
@@ -25,8 +37,8 @@ int	ft_countcollect(t_data *img)
 
 	i = 0;
 	collect = 0;
-	ft_floodfill(img, img->start[0], img->start[1], &collect);
-	if ((collect == img->collect) && img->exitc)
+	//ft_floodfill(img, img->start[0], img->start[1], &collect);
+	if (ft_floodfill(img, img->start[0], img->start[1], &collect))
 	{
 		while (i < img->lines)
 		{
@@ -41,7 +53,7 @@ int	ft_countcollect(t_data *img)
 		}
 		return (1);
 	}
-	return (0);
+	return (0 * write(2, "ERROR\nFloodfill failed\n", 23));
 }
 
 int	ft_floodfill(t_data *img, int x, int y, int *collect)
@@ -52,6 +64,8 @@ int	ft_floodfill(t_data *img, int x, int y, int *collect)
 	result = 0;
 	if (x < 0 || x >= img->lines || y < 0 || y >= img->rows)
 		return (0);
+	if (img->exitc && img->collect == *collect)
+		return (1);
 	tmp = img->map[x][y];
 	if (tmp == '1' || tmp == 'V')
 		return (0);

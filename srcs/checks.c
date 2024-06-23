@@ -20,18 +20,22 @@ int	ft_validfd(char *str, t_data *img)
 
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
-		return (0);
+		return (0 * write(2, "ERROR\nInvalid fd\n", 17));
 	line = ft_get_next_line(fd);
 	len = ft_strlen(line);
 	while (line)
 	{
 		if (len != ft_strlen(line))
-			return (0);
+		{
+			
+			free(line);
+			return (0 * write(2, "ERROR\nNot a rectangle\n", 22));
+		}
 		img->lines++;
 		free(line);
 		line = ft_get_next_line(fd);
 	}
-	img->rows = len - 1;
+	img->rows = len;
 	close(fd);
 	return (len);
 }
@@ -56,7 +60,9 @@ int	ft_mapcheck(t_data *img)
 			else if (c == 'E')
 				img->exit++;
 			else if (c != '0' && c != '1')
-				return (0);
+			{
+				return (0 * write(2, "ERROR\nInvalid character\n",24));
+			}
 		}
 		i++;
 	}
@@ -73,7 +79,9 @@ int	ft_checktopwalls(t_data *img)
 	while (y < img->rows)
 	{
 		if (img->map[x][y] != '1')
-			return (0);
+		{
+			return (0 * write(2, "ERROR\nNot closed\n", 17));
+		}
 		y++;
 	}
 	x = img->lines - 1;
@@ -81,7 +89,9 @@ int	ft_checktopwalls(t_data *img)
 	while (y < img->rows)
 	{
 		if (img->map[x][y] != '1')
-			return (0);
+		{
+			return (0 * write(2, "ERROR\nNot closed\n", 17));
+		}
 		y++;
 	}
 	return (1);
@@ -97,7 +107,9 @@ int	ft_checksidewalls(t_data *img)
 	while (x < img->lines)
 	{
 		if (img->map[x][y] != '1')
-			return (0);
+		{
+			return (0 * write(2, "ERROR\nNot closed\n", 17));
+		}
 		x++;
 	}
 	y = img->rows - 1;
@@ -105,7 +117,9 @@ int	ft_checksidewalls(t_data *img)
 	while (x < img->lines)
 	{
 		if (img->map[x][y] != '1')
-			return (0);
+		{
+			return (0 * write(2, "ERROR\nNot closed\n", 17));
+		}
 		x++;
 	}
 	return (1);
@@ -114,6 +128,6 @@ int	ft_checksidewalls(t_data *img)
 int	ft_checker(t_data *img, char *str)
 {
 	return (ft_allocmap(str, img) && ft_mapcheck(img)
-		&& ft_countcollect(img) && ft_checktopwalls(img)
-		&& ft_checksidewalls(img));
+		&& ft_checktopwalls(img)
+		&& ft_checksidewalls(img) && ft_countcollect(img));
 }

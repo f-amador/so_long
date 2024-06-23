@@ -18,7 +18,7 @@ void	ft_freemap(t_data *img)
 	int	j;
 
 	i = 0;
-	while (i < img->lines)
+	while (img->map && i < img->lines)
 	{
 		j = 0;
 		while (j < img->rows)
@@ -43,9 +43,9 @@ void	ft_fillmap(t_data *img, int fd)
 		line = ft_get_next_line(fd);
 		img->map[i] = (int *)malloc(img->rows * sizeof(int));
 		if (!(img->map[i]))
-			return ;
+			return ((void)write(2, "ERROR\nMalloc Failed\n",20));
 		j = 0;
-		while (line[j] && line[j] != '\n')
+		while (j < img->rows)
 		{
 			if (line[j] == 'P')
 			{
@@ -67,7 +67,7 @@ int	ft_allocmap(char *str, t_data *img)
 	fd = open(str, O_RDONLY);
 	img->map = (int **)malloc(img->lines * sizeof(int *));
 	if (!(img->map))
-		return (0);
+		return (0 * write(2, "ERROR\nMalloc Failed\n",20));
 	ft_fillmap(img, fd);
 	close(fd);
 	return (1);
@@ -78,14 +78,17 @@ int	main(int ac, char *av[])
 	static t_data	img;
 	int				i;
 
-	if (ac == 2 && ft_validfd(av[1], &img) && ft_checker(&img, av[1]))
+	if (ac == 2)
 	{
-		i = ft_strlen(av[1]) - 1;
-		if (i >= 3 && av[1][i] == 'r' && av[1][i - 1] == 'e'
-				&& av[1][i - 2] == 'b' && av[1][i - 3] == '.')
-			ft_mlxinit(&img);
+		if ( ft_validfd(av[1], &img) && ft_checker(&img, av[1]))
+		{
+			i = ft_strlen(av[1]) - 1;
+			if (i >= 3 && av[1][i] == 'r' && av[1][i - 1] == 'e'
+					&& av[1][i - 2] == 'b' && av[1][i - 3] == '.')
+				ft_mlxinit(&img);
+		}
 	}
 	else
-		return (ft_freemap(&img), write(2, "ERROR\n", 6));
+		return (write(2, "ERROR\nWrong number of args\n", 27));
 	ft_freemap(&img);
 }
