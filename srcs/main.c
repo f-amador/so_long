@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: framador <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: framador <framador@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:54:05 by framador          #+#    #+#             */
-/*   Updated: 2024/06/22 16:55:45 by framador         ###   ########.fr       */
+/*   Updated: 2024/06/23 16:03:24 by framador         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_fillmap(t_data *img, int fd)
 		line = ft_get_next_line(fd);
 		img->map[i] = (int *)malloc(img->rows * sizeof(int));
 		if (!(img->map[i]))
-			return ((void)write(2, "ERROR\nMalloc Failed\n",20));
+			return ((void)write(2, "ERROR\nMalloc Failed\n", 20));
 		j = 0;
 		while (j < img->rows)
 		{
@@ -67,7 +67,7 @@ int	ft_allocmap(char *str, t_data *img)
 	fd = open(str, O_RDONLY);
 	img->map = (int **)malloc(img->lines * sizeof(int *));
 	if (!(img->map))
-		return (0 * write(2, "ERROR\nMalloc Failed\n",20));
+		return (0 * write(2, "ERROR\nMalloc Failed\n", 20));
 	ft_fillmap(img, fd);
 	close(fd);
 	return (1);
@@ -80,7 +80,7 @@ int	main(int ac, char *av[])
 
 	if (ac == 2)
 	{
-		if ( ft_validfd(av[1], &img) && ft_checker(&img, av[1]))
+		if (ft_validfd(av[1], &img) && ft_checker(&img, av[1]))
 		{
 			i = ft_strlen(av[1]) - 1;
 			if (i >= 3 && av[1][i] == 'r' && av[1][i - 1] == 'e'

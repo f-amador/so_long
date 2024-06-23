@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: framador <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: framador <framador@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:58:22 by framador          #+#    #+#             */
-/*   Updated: 2024/06/22 16:59:35 by framador         ###   ########.fr       */
+/*   Updated: 2024/06/23 16:03:37 by framador         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	ft_countcollect(t_data *img)
 
 	i = 0;
 	collect = 0;
-	//ft_floodfill(img, img->start[0], img->start[1], &collect);
 	if (ft_floodfill(img, img->start[0], img->start[1], &collect))
 	{
 		while (i < img->lines)

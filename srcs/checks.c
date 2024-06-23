@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: framador <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: framador <framador@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:56:31 by framador          #+#    #+#             */
-/*   Updated: 2024/06/22 16:57:08 by framador         ###   ########.fr       */
+/*   Updated: 2024/06/23 16:05:14 by framador         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_validfd(char *str, t_data *img)
 	{
 		if (len != ft_strlen(line))
 		{
-			
 			free(line);
 			return (0 * write(2, "ERROR\nNot a rectangle\n", 22));
 		}
@@ -61,7 +60,7 @@ int	ft_mapcheck(t_data *img)
 				img->exit++;
 			else if (c != '0' && c != '1')
 			{
-				return (0 * write(2, "ERROR\nInvalid character\n",24));
+				return (0 * write(2, "ERROR\nInvalid character\n", 24));
 			}
 		}
 		i++;

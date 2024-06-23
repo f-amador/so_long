@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: framador <framador@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/23 16:08:34 by framador          #+#    #+#             */
+/*   Updated: 2024/06/23 16:08:52 by framador         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -42,29 +53,29 @@ typedef struct s_data {
 	void		*waddr;
 	void		*faddr;
 	char		*addr;
-	int		steps;
-	int		bimg;
-	int		endian;
-	int		lines;
-	int		**map;
-	int		rows;
-	int		start[2];
-	int		player;
-	int		exit;
-	int		exitc;
-	int		collect;
-	int		collectc;
-	int		left;
+	int			steps;
+	int			bimg;
+	int			endian;
+	int			lines;
+	int			**map;
+	int			rows;
+	int			start[2];
+	int			player;
+	int			exit;
+	int			exitc;
+	int			collect;
+	int			collectc;
+	int			left;
 }	t_data;
 
 // --------PROTOTYPES--------
 char	*ft_get_next_line(int fd);
 size_t	ft_strlen(char const *s);
 int		ft_win_destroy(t_data *img);
-int 	ft_floodfill(t_data *img, int x, int y, int *collect);
+int		ft_floodfill(t_data *img, int x, int y, int *collect);
 int		ft_countcollect(t_data *img);
 int		ft_validfd(char *str, t_data *img);
-int 	ft_mapcheck(t_data *img);
+int		ft_mapcheck(t_data *img);
 int		ft_keyhook(int keycode, t_data *img);
 int		ft_checktopwalls(t_data *img);
 int		ft_checksidewalls(t_data *img);

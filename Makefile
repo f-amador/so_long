@@ -7,11 +7,17 @@ SRC_DIR = srcs
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 OBJ_DIR = objs
 PROGRAM = so_long
+MLX_DIR = include/minilibx-linux
+MLX_LIB = $(MLX_DIR)/libmlx_Linux.a
 
-all: $(PROGRAM)
+
+all: $(MLX_LIB) $(PROGRAM)
+
+$(MLX_LIB):
+	make -C $(MLX_DIR)
 
 $(PROGRAM):$(NAME)
-	$(CC) $(CFLAGS)  -g $(NAME) -o $(PROGRAM)  -Linclude/minilibx-linux -lmlx -lXext -lX11 -lm
+	$(CC) $(CFLAGS)  -g $(NAME) -o $(PROGRAM)  -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 $(NAME): $(OBJ)
 	ar crs $(NAME) $(OBJ)
@@ -19,10 +25,11 @@ $(NAME): $(OBJ)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -o $@ -c -g $<
-	make -C ./include/minilibx-linux
+	
 
-clean: all
+clean:
 	rm -rf objs
+	make clean -C ./$(MLX_DIR)
 
 fclean: clean
 	rm -rf $(NAME) $(PROGRAM)

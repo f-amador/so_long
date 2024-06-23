@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   gnl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: framador <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: framador <framador@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:59:48 by framador          #+#    #+#             */
 /*   Updated: 2024/06/22 16:59:55 by framador         ###   ########.fr       */

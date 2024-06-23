@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   mlxinit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: framador <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: framador <framador@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:03:30 by framador          #+#    #+#             */
 /*   Updated: 2024/06/22 17:06:36 by framador         ###   ########.fr       */
