@@ -6,7 +6,7 @@
 /*   By: framador <framador@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:58:22 by framador          #+#    #+#             */
-/*   Updated: 2024/06/23 16:03:37 by framador         ###   ########.fr       */
+/*   Updated: 2024/06/23 23:00:56 by framador         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,35 @@ void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
+int **ft_dupmap(int lines, int rows)
+{
+	int	j;
+	int	i;
+	int **visited;
+	
+	visited = malloc(lines * sizeof(int *));
+	while(i < lines) 
+	{
+		j = 0;
+		visited[i] = malloc(rows * sizeof(int));
+		while(j < rows) 
+		{
+			visited[i][j] = 0;
+			j++;
+		}
+	}
+	return visited;
+}
 
+void ft_checkflood(t_data *img, int *collect) 
+{
+	img->map2 = ft_dupmap(img->lines, img->rows);
+	ft_floodfill(img, img->start[0], img->start[1], collect);
+	for (int i = 0; i < img->lines; i++) {
+		free(img->map2[i]);
+	}
+	free(img->map2);
+}
 int	ft_countcollect(t_data *img)
 {
 	int	collect;
@@ -37,7 +65,8 @@ int	ft_countcollect(t_data *img)
 
 	i = 0;
 	collect = 0;
-	if (ft_floodfill(img, img->start[0], img->start[1], &collect))
+	ft_checkflood(img, &collect);
+	if (img->exitc && img->collect == collect)
 	{
 		while (i < img->lines)
 		{
@@ -55,32 +84,24 @@ int	ft_countcollect(t_data *img)
 	return (0 * write(2, "ERROR\nFloodfill failed\n", 23));
 }
 
-int	ft_floodfill(t_data *img, int x, int y, int *collect)
+void	ft_floodfill(t_data *img, int x, int y, int *collect)
 {
-	int		result;
-	char	tmp;
-
-	result = 0;
-	if (x < 0 || x >= img->lines || y < 0 || y >= img->rows)
-		return (0);
+	if (x < 0 || x >= img->lines || y < 0 || y >= img->rows || img->map2[x][y])
+		return ;
 	if (img->exitc && img->collect == *collect)
-		return (1);
-	tmp = img->map[x][y];
-	if (tmp == '1' || tmp == 'V')
-		return (0);
-	if (tmp == 'E')
+		return ;
+	img->map2[x][y] = 1;
+	if (img->map[x][y] == '1')
+		return ;
+	if (img->map[x][y] == 'E')
 		img->exitc = 1;
-	if (tmp == 'C')
+	if (img->map[x][y] == 'C')
 		(*collect)++;
-	if (tmp != 'E')
-		img->map[x][y] = 'V';
-	result = ft_floodfill(img, x + 1, y, collect)
-		|| ft_floodfill(img, x - 1, y, collect)
-		|| ft_floodfill(img, x, y + 1, collect)
-		|| ft_floodfill(img, x, y - 1, collect);
-	if (tmp != 'C')
-		img->map[x][y] = tmp;
-	return (result);
+	ft_floodfill(img, x + 1, y, collect);
+	ft_floodfill(img, x - 1, y, collect);
+	ft_floodfill(img, x, y + 1, collect);
+	ft_floodfill(img, x, y - 1, collect);
+	return ;
 }
 
 void	ft_putnbr(int n)

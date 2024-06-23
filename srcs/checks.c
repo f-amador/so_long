@@ -65,7 +65,7 @@ int	ft_mapcheck(t_data *img)
 		}
 		i++;
 	}
-	return ((img->player == 1 && img->exit == 1 && img->collect > 0));
+	return (1);
 }
 
 int	ft_checktopwalls(t_data *img)
@@ -126,7 +126,15 @@ int	ft_checksidewalls(t_data *img)
 
 int	ft_checker(t_data *img, char *str)
 {
-	return (ft_allocmap(str, img) && ft_mapcheck(img)
-		&& ft_checktopwalls(img)
-		&& ft_checksidewalls(img) && ft_countcollect(img));
+	if (!ft_allocmap(str, img))
+		return (0);
+	if (!ft_mapcheck(img))
+		return (0);
+	if (!(img->player == 1 && img->exit == 1 && img->collect > 0))
+		return (0 * write(2, "ERROR\nWrong exit player or collect\n",35));
+	if (!ft_checktopwalls(img) || !ft_checksidewalls(img))
+		return (0);
+	if (!ft_countcollect(img))
+		return (0);
+	return (1);
 }
