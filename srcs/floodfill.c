@@ -78,10 +78,8 @@ void	ft_floodfill(t_data *img, int x, int y, int *collect)
 	img->map2[x][y] = 1;
 	if (img->map[x][y] == '1')
 		return ;
-	if (img->map[x][y] == 'E')
-		img->exitc = 1;
-	if (img->map[x][y] == 'C')
-		(*collect)++;
+	img->exitc += (img->map[x][y] == 'E');
+	(*collect) += (img->map[x][y] == 'C');
 	ft_floodfill(img, x + 1, y, collect);
 	ft_floodfill(img, x - 1, y, collect);
 	ft_floodfill(img, x, y + 1, collect);
