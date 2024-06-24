@@ -62,6 +62,8 @@ static void	ft_buffflusher(char *buff)
 
 	i = 0;
 	j = 0;
+	if (!buff)
+		return ;
 	while (i < BUFFER_SIZE && buff[i] != 10)
 		i++;
 	if (buff[i] == 10 && i < BUFFER_SIZE)
@@ -94,6 +96,8 @@ char	*ft_get_next_line(int fd)
 	while (buff[0] || read(fd, buff, BUFFER_SIZE) > 0)
 	{
 		str = ft_strjoin(str, buff);
+		if (!str)
+			return (NULL);
 		ft_buffflusher(buff);
 		if (str[ft_strleng(str) - 1] == 10)
 			break ;

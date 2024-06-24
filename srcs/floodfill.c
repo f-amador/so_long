@@ -6,7 +6,7 @@
 /*   By: framador <framador@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:58:22 by framador          #+#    #+#             */
-/*   Updated: 2024/06/23 23:00:56 by framador         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:32:41 by framador         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,15 @@ int	ft_countcollect(t_data *img)
 	i = 0;
 	collect = 0;
 	img->map2 = ft_dupmap(img, img->lines, img->rows);
+	if (!img->map2)
+		return (0 * write(2, "ERROR\nMalloc failed\n", 20));
 	if (img->lines2 == img->lines)
 		ft_floodfill(img, img->start[0], img->start[1], &collect);
 	while (i < img->lines2)
 		free(img->map2[i++]);
 	free(img->map2);
+	if (img->lines != img->lines2)
+		return (0 * write(2, "ERROR\nMalloc failed\n", 20));
 	if (img->exitc && img->collect == collect && img->lines == img->lines2)
 		return (1);
 	return (0 * write(2, "ERROR\nFloodfill failed\n", 23));

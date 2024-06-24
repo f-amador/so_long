@@ -48,6 +48,8 @@ void	ft_fillmap(t_data *img, int fd)
 	while (i < img->lines)
 	{
 		line = ft_get_next_line(fd);
+		if (!line)
+			return ((void)write(2, "Error\nMalloc failed\n", 20));
 		img->map[i] = (int *)malloc(img->rows * sizeof(int));
 		if (!(img->map[i]))
 			return ((img->lines = i), ft_freemap(img));
@@ -55,10 +57,7 @@ void	ft_fillmap(t_data *img, int fd)
 		while (j < img->rows)
 		{
 			if (line[j] == 'P')
-			{
-				img->start[0] = i;
-				img->start[1] = j;
-			}
+				ft_initstart(img, i, j);
 			img->map[i][j] = (int)line[j];
 			j++;
 		}
