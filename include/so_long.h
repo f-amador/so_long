@@ -59,6 +59,7 @@ typedef struct s_data {
 	int			bimg;
 	int			endian;
 	int			lines;
+	int			lines2;
 	int			**map2;
 	int			**map;
 	int			rows;
@@ -75,7 +76,6 @@ typedef struct s_data {
 char	*ft_get_next_line(int fd);
 size_t	ft_strlen(char const *s);
 int		ft_win_destroy(t_data *img);
-void		ft_floodfill(t_data *img, int x, int y, int *collect);
 int		ft_countcollect(t_data *img);
 int		ft_validfd(char *str, t_data *img);
 int		ft_mapcheck(t_data *img);
@@ -84,6 +84,8 @@ int		ft_checktopwalls(t_data *img);
 int		ft_checksidewalls(t_data *img);
 int		ft_checker(t_data *img, char *str);
 int		ft_allocmap(char *str, t_data *img);
+void	ft_floodfill(t_data *img, int x, int y, int *collect);
+void	ft_putexit(t_data *img, int i, int j);
 void	ft_printmoves(t_data *img);
 void	ft_mlxinit(t_data *img);
 void	ft_freemap(t_data *img);

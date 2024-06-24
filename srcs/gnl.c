@@ -100,3 +100,8 @@ char	*ft_get_next_line(int fd)
 	}
 	return (str);
 }
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}

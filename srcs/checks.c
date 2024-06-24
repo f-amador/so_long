@@ -131,7 +131,7 @@ int	ft_checker(t_data *img, char *str)
 	if (!ft_mapcheck(img))
 		return (0);
 	if (!(img->player == 1 && img->exit == 1 && img->collect > 0))
-		return (0 * write(2, "ERROR\nWrong exit player or collect\n",35));
+		return (0 * write(2, "ERROR\nWrong exit player or collect\n", 35));
 	if (!ft_checktopwalls(img) || !ft_checksidewalls(img))
 		return (0);
 	if (!ft_countcollect(img))

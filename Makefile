@@ -2,7 +2,7 @@
 NAME = libso_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinclude
-SRC = main.c gnl.c floodfill.c	mlxinit.c key_hooks.c checks.c
+SRC = main.c gnl.c floodfill.c	mlxinit.c key_hooks.c checks.c putexit.c
 SRC_DIR = srcs
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 OBJ_DIR = objs

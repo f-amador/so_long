@@ -24,63 +24,48 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-int **ft_dupmap(int lines, int rows)
+int	**ft_dupmap(t_data *img, int lines, int rows)
 {
 	int	j;
 	int	i;
-	int **visited;
-	
+	int	**visited;
+
+	i = 0;
 	visited = malloc(lines * sizeof(int *));
-	while(i < lines) 
+	if (!visited)
+		return (NULL);
+	while (i < lines)
 	{
 		j = 0;
 		visited[i] = malloc(rows * sizeof(int));
-		while(j < rows) 
+		if (!visited[i])
+			break ;
+		while (j < rows)
 		{
 			visited[i][j] = 0;
 			j++;
 		}
+		i++;
 	}
-	return visited;
+	img->lines2 = i;
+	return (visited);
 }
 
-void ft_checkflood(t_data *img, int *collect) 
-{
-	img->map2 = ft_dupmap(img->lines, img->rows);
-	ft_floodfill(img, img->start[0], img->start[1], collect);
-	for (int i = 0; i < img->lines; i++) {
-		free(img->map2[i]);
-	}
-	free(img->map2);
-}
 int	ft_countcollect(t_data *img)
 {
 	int	collect;
 	int	i;
-	int	j;
 
 	i = 0;
 	collect = 0;
-	ft_checkflood(img, &collect);
-	if (img->exitc && img->collect == collect)
-	{
-		while (i < img->lines)
-		{
-			j = 0;
-			while (j < img->rows)
-			{
-				if (img->map[i][j] == 'V')
-					img->map[i][j] = 'C';
-				j++;
-			}
-			i++;
-		}
+	img->map2 = ft_dupmap(img, img->lines, img->rows);
+	if (img->lines2 == img->lines)
+		ft_floodfill(img, img->start[0], img->start[1], &collect);
+	while (i < img->lines2)
+		free(img->map2[i++]);
+	free(img->map2);
+	if (img->exitc && img->collect == collect && img->lines == img->lines2)
 		return (1);
-	}
 	return (0 * write(2, "ERROR\nFloodfill failed\n", 23));
 }
 

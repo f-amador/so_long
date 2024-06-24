@@ -31,7 +31,7 @@ static void	ft_moveu(t_data *img)
 		if (img->map[x - 1][y] == 'E' && img->collect == img ->collectc)
 			ft_win_destroy(img);
 		img->steps++;
-		ft_drawimg(img); 
+		ft_drawimg(img);
 	}
 	ft_printmoves(img);
 }
@@ -55,7 +55,7 @@ static void	ft_moved(t_data *img)
 		if (img->map[x + 1][y] == 'E' && img->collect == img ->collectc)
 			ft_win_destroy(img);
 		img->steps++;
-		ft_drawimg(img); 
+		ft_drawimg(img);
 	}
 	ft_printmoves(img);
 }
@@ -80,7 +80,7 @@ static void	ft_movel(t_data *img)
 			ft_win_destroy(img);
 		img->steps++;
 		img->left = 1;
-		ft_drawimg(img); 
+		ft_drawimg(img);
 	}
 	ft_printmoves(img);
 }
@@ -105,14 +105,13 @@ static void	ft_mover(t_data *img)
 			ft_win_destroy(img);
 		img->steps++;
 		img->left = 0;
-		ft_drawimg(img); 
+		ft_drawimg(img);
 	}
-	ft_printmoves(img); 
+	ft_printmoves(img);
 }
 
 int	ft_keyhook(int keycode, t_data *img)
 {
-	
 	if (keycode == ESC)
 		ft_win_destroy(img);
 	else if (keycode == W_KEY || keycode == UP_KEY)
