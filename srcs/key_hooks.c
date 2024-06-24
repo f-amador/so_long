@@ -21,6 +21,7 @@ static void	ft_moveu(t_data *img)
 	y = img->start[1];
 	if (img->map[x - 1][y] != '1')
 	{
+		img->steps++;
 		if (img->map[x - 1][y] == 'C')
 			img->collectc++;
 		img->start[0]--;
@@ -29,8 +30,10 @@ static void	ft_moveu(t_data *img)
 		if (img->map[x - 1][y] != 'E')
 			img->map[x - 1][y] = 'P';
 		if (img->map[x - 1][y] == 'E' && img->collect == img ->collectc)
+		{
+			ft_printmoves(img);
 			ft_win_destroy(img);
-		img->steps++;
+		}
 		ft_drawimg(img);
 	}
 	ft_printmoves(img);
@@ -45,6 +48,7 @@ static void	ft_moved(t_data *img)
 	y = img->start[1];
 	if (img->map[x + 1][y] != '1')
 	{
+		img->steps++;
 		if (img->map[x + 1][y] == 'C')
 			img->collectc++;
 		img->start[0]++;
@@ -53,8 +57,10 @@ static void	ft_moved(t_data *img)
 		if (img->map[x + 1][y] != 'E')
 			img->map[x + 1][y] = 'P';
 		if (img->map[x + 1][y] == 'E' && img->collect == img ->collectc)
+		{
+			ft_printmoves(img);
 			ft_win_destroy(img);
-		img->steps++;
+		}
 		ft_drawimg(img);
 	}
 	ft_printmoves(img);
@@ -69,6 +75,7 @@ static void	ft_movel(t_data *img)
 	y = img->start[1];
 	if (img->map[x][y - 1] != '1')
 	{
+		img->steps++;
 		if (img->map[x][y - 1] == 'C')
 			img->collectc++;
 		img->start[1]--;
@@ -77,8 +84,10 @@ static void	ft_movel(t_data *img)
 		if (img->map[x][y - 1] != 'E')
 			img->map[x][y - 1] = 'P';
 		if (img->map[x][y - 1] == 'E' && img->collect == img ->collectc)
+		{
+			ft_printmoves(img);
 			ft_win_destroy(img);
-		img->steps++;
+		}
 		img->left = 1;
 		ft_drawimg(img);
 	}
@@ -94,6 +103,7 @@ static void	ft_mover(t_data *img)
 	y = img->start[1];
 	if (img->map[x][y + 1] != '1')
 	{
+		img->steps++;
 		if (img->map[x][y + 1] == 'C')
 			img->collectc++;
 		img->start[1]++;
@@ -102,8 +112,10 @@ static void	ft_mover(t_data *img)
 		if (img->map[x][y + 1] != 'E')
 			img->map[x][y + 1] = 'P';
 		if (img->map[x][y + 1] == 'E' && img->collect == img ->collectc)
+		{
+			ft_printmoves(img);
 			ft_win_destroy(img);
-		img->steps++;
+		}
 		img->left = 0;
 		ft_drawimg(img);
 	}

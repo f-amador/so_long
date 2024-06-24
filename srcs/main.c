@@ -50,7 +50,7 @@ void	ft_fillmap(t_data *img, int fd)
 		line = ft_get_next_line(fd);
 		img->map[i] = (int *)malloc(img->rows * sizeof(int));
 		if (!(img->map[i]))
-			return ((void)write(2, "ERROR\nMalloc Failed\n", 20));
+			return ((img->lines = i), ft_freemap(img));
 		j = 0;
 		while (j < img->rows)
 		{
@@ -87,13 +87,15 @@ int	main(int ac, char *av[])
 
 	if (ac == 2)
 	{
-		if (ft_validfd(av[1], &img) && ft_checker(&img, av[1]))
+		i = ft_strlen(av[1]);
+		if (i >= 4 && av[1][i - 1] == 'r' && av[1][i - 2] == 'e'
+				&& av[1][i - 3] == 'b' && av[1][i - 4] == '.')
 		{
-			i = ft_strlen(av[1]) - 1;
-			if (i >= 3 && av[1][i] == 'r' && av[1][i - 1] == 'e'
-					&& av[1][i - 2] == 'b' && av[1][i - 3] == '.')
+			if (ft_validfd(av[1], &img) && ft_checker(&img, av[1]))
 				ft_mlxinit(&img);
 		}
+		else
+			write(2, "ERROR\nNot a .ber file\n", 22);
 	}
 	else
 		return (write(2, "ERROR\nWrong number of args\n", 27));
