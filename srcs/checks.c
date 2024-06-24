@@ -6,7 +6,7 @@
 /*   By: framador <framador@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:56:31 by framador          #+#    #+#             */
-/*   Updated: 2024/06/23 16:05:14 by framador         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:09:36 by framador         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	ft_validfd(char *str, t_data *img)
 		free(line);
 		line = ft_get_next_line(fd);
 	}
+	if (!len)
+		return (0 * write(2, "ERROR\nNot a rectangle\n", 22));
 	img->rows = len;
 	close(fd);
 	return (len);
