@@ -6,7 +6,7 @@
 /*   By: framador <framador@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:00:08 by framador          #+#    #+#             */
-/*   Updated: 2025/04/12 18:14:14 by framador         ###   ########.fr       */
+/*   Updated: 2025/05/31 14:04:39 by framador         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,15 +125,25 @@ static void	ft_mover(t_data *img)
 
 int	ft_keyhook(int keycode, t_data *img)
 {
-	if (keycode == ESC)
-		ft_win_destroy(img);
-	else if (keycode == W_KEY || keycode == UP_KEY)
-		ft_moveu(img);
-	else if (keycode == S_KEY || keycode == DOWN_KEY)
-		ft_moved(img);
-	else if (keycode == A_KEY || keycode == LEFT_KEY)
-		ft_movel(img);
-	else if (keycode == D_KEY || keycode == RIGHT_KEY)
-		ft_mover(img);
+	static int f;
+	
+	usleep(500);
+	if (f)
+	{
+		if (keycode == ESC)
+			ft_win_destroy(img);
+		else if (keycode == W_KEY || keycode == UP_KEY)
+			ft_moveu(img);
+		else if (keycode == S_KEY || keycode == DOWN_KEY)
+			ft_moved(img);
+		else if (keycode == A_KEY || keycode == LEFT_KEY)
+			ft_movel(img);
+		else if (keycode == D_KEY || keycode == RIGHT_KEY)
+			ft_mover(img);
+		f = 0;
+	}
+	else
+		f = 1;
+	usleep(500);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: framador <framador@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: framador <framador@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 16:08:34 by framador          #+#    #+#             */
-/*   Updated: 2024/06/23 16:08:52 by framador         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:39:47 by framador         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,33 +43,34 @@
 
 // --------STRUCTS-----------
 typedef struct s_data {
-	void		*img;
-	void		*mlx;
-	void		*mlx_win;
-	void		*p2addr;
-	void		*caddr;
-	void		*eaddr;
-	void		*e2addr;
-	void		*e3addr;
-	void		*paddr;
-	void		*waddr;
-	void		*faddr;
-	char		*addr;
-	int			steps;
-	int			bimg;
-	int			lines;
-	int			lines2;
-	int			**map2;
-	int			**map;
-	int			rows;
-	int			start[2];
-	int			player;
-	int			exit;
-	int			exitc;
-	int			collect;
-	int			collectc;
-	int			left;
-}	t_data;
+    void        *img;       // Main image buffer
+    void        *mlx;       // MiniLibX instance
+    void        *mlx_win;   // Window instance
+    // Texture addresses
+    void        *p2addr;
+    void        *caddr;
+    void        *eaddr;
+    void        *e2addr;
+    void        *e3addr;
+    void        *paddr;
+    void        *waddr;
+    void        *faddr;
+    char        *addr;      // Image data address
+    int         steps;      // Move counter
+    int         bimg;       // Bits per pixel
+    int         lines;      // Map line count
+    int         lines2;     // Secondary line count
+    int         **map2;     // Secondary map array
+    int         **map;      // Primary map array
+    int         rows;       // Map row count
+    int         start[2];   // Player start position
+    int         player;     // Player count
+    int         exit;       // Exit count
+    int         exitc;      // Exit counter
+    int         collect;    // Collectible count
+    int         collectc;   // Collected items count
+    int         left;       // Items remaining
+} t_data;
 
 // --------PROTOTYPES--------
 char	*ft_get_next_line(int fd);

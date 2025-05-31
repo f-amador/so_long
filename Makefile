@@ -1,6 +1,6 @@
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iinclude
+CFLAGS = -Wall -Wextra -Werror -Iinclude -g
 SRC = main.c gnl.c floodfill.c	mlxinit.c key_hooks.c checks.c putexit.c
 SRC_DIR = srcs
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

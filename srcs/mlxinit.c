@@ -6,7 +6,7 @@
 /*   By: framador <framador@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:03:30 by framador          #+#    #+#             */
-/*   Updated: 2025/03/24 17:01:37 by framador         ###   ########.fr       */
+/*   Updated: 2025/05/31 14:02:24 by framador         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ void	ft_mlxinit(t_data *img)
 		ft_win_destroy(img);
 	ft_loadimg(img);
 	ft_drawimg(img);
+	mlx_hook(img->mlx_win, 02, 1L << 0, ft_keyhook, img);
+	mlx_hook(img->mlx_win, 01, 1L << 0, ft_keyhook, img);
 	mlx_key_hook(img->mlx_win, ft_keyhook, img);
 	mlx_hook(img->mlx_win, 17, 0, ft_win_destroy, img);
 	ft_printmoves(img);
