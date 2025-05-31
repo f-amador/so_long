@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: framador <framador@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: framador <framador@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:00:08 by framador          #+#    #+#             */
-/*   Updated: 2024/06/22 17:01:17 by framador         ###   ########.fr       */
+/*   Updated: 2025/04/12 18:14:14 by framador         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ static void	ft_mover(t_data *img)
 		if (img->map[x][y + 1] == 'E' && img->collect == img ->collectc)
 		{
 			ft_printmoves(img);
+			ft_drawimg(img);
 			ft_win_destroy(img);
 		}
 		img->left = 0;
